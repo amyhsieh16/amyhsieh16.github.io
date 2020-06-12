@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>在Linux(Centos/Ubuntu)上，安裝LAMP/LEMP(LNMP) - Amy Blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="amyhsieh16" /><meta name="description" content="PHP Centos 從官網取得 Remi和 EPEL rpm的連結 1 2 3 4 5 6 7 8 9 centos 7: $sudo rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-7.rpm; $sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm; centos 8: $sudo rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-8.rpm; $sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm; 安装 yum-utils工具，並設定 php套件" /><meta name="keywords" content="Hugo, theme, even" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.72.0 with theme even" />
+
+
+<link rel="canonical" href="http://localhost:1313/post/set-php/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.78f8f17bab244b9ee62ad16480c9584d5fc2db06ae20681d1ca225cefd80767c.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="在Linux(Centos/Ubuntu)上，安裝LAMP/LEMP(LNMP)" />
+<meta property="og:description" content="PHP Centos 從官網取得 Remi和 EPEL rpm的連結 1 2 3 4 5 6 7 8 9 centos 7: $sudo rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-7.rpm; $sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm; centos 8: $sudo rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-8.rpm; $sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm; 安装 yum-utils工具，並設定 php套件" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://localhost:1313/post/set-php/" />
+<meta property="article:published_time" content="2020-06-12T18:31:11+08:00" />
+<meta property="article:modified_time" content="2020-06-12T18:31:11+08:00" />
+<meta itemprop="name" content="在Linux(Centos/Ubuntu)上，安裝LAMP/LEMP(LNMP)">
+<meta itemprop="description" content="PHP Centos 從官網取得 Remi和 EPEL rpm的連結 1 2 3 4 5 6 7 8 9 centos 7: $sudo rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-7.rpm; $sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm; centos 8: $sudo rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-8.rpm; $sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm; 安装 yum-utils工具，並設定 php套件">
+<meta itemprop="datePublished" content="2020-06-12T18:31:11&#43;08:00" />
+<meta itemprop="dateModified" content="2020-06-12T18:31:11&#43;08:00" />
+<meta itemprop="wordCount" content="752">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在Linux(Centos/Ubuntu)上，安裝LAMP/LEMP(LNMP)"/>
+<meta name="twitter:description" content="PHP Centos 從官網取得 Remi和 EPEL rpm的連結 1 2 3 4 5 6 7 8 9 centos 7: $sudo rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-7.rpm; $sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm; centos 8: $sudo rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-8.rpm; $sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm; 安装 yum-utils工具，並設定 php套件"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Even</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Even</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">在Linux(Centos/Ubuntu)上，安裝LAMP/LEMP(LNMP)</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-06-12 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">目錄</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#php">PHP</a>
+      <ul>
+        <li><a href="#centos">Centos</a></li>
+        <li><a href="#ubuntu">Ubuntu</a></li>
+      </ul>
+    </li>
+    <li><a href="#伺服器apache">伺服器(Apache)</a>
+      <ul>
+        <li><a href="#centos-1">Centos</a></li>
+        <li><a href="#ubuntu-1">Ubuntu</a></li>
+      </ul>
+    </li>
+    <li><a href="#伺服器nginx">伺服器(Nginx)</a>
+      <ul>
+        <li><a href="#centos-2">Centos</a></li>
+        <li><a href="#ubuntu-2">Ubuntu</a></li>
+      </ul>
+    </li>
+    <li><a href="#mysql">MySQL</a>
+      <ul>
+        <li><a href="#centos-3">Centos</a></li>
+        <li><a href="#ubuntu-3">Ubuntu</a></li>
+      </ul>
+    </li>
+    <li><a href="#phpmyadmin">PhpMyAdmin</a>
+      <ul>
+        <li><a href="#centos-4">Centos</a></li>
+        <li><a href="#ubuntu-4">Ubuntu</a></li>
+      </ul>
+    </li>
+    <li><a href="#防火牆firewall">防火牆(Firewall)</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="php">PHP</h2>
+<h3 id="centos">Centos</h3>
+<ol>
+<li>從官網取得 Remi和 EPEL rpm的連結</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">centos 7:
+<span class="nv">$sudo</span> rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-7.rpm<span class="p">;</span>
+
+<span class="nv">$sudo</span> rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm<span class="p">;</span>
+
+centos 8:
+<span class="nv">$sudo</span> rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-8.rpm<span class="p">;</span>
+
+<span class="nv">$sudo</span> rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm<span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>安装 yum-utils工具，並設定 php套件為 7.2 版本(可省略)</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span> yum install yum-utils
+</code></pre></td></tr></table>
+</div>
+</div><p>設定 php套件為 7.2 版本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span>  yum-config-manager --enable remi-php72
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>安裝 php和相關套件</li>
+</ol>
+<p><strong>如果跳過第2步驟，則指令如下：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span> yum --enablerepo<span class="o">=</span>remi-php72 install ...<span class="o">(</span>下列套件<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span> yum install php php-ctype php-json php-openssl php-nette-tokenizer php-pecl-zip php-pdo php-mbstring php-xml php-mcrypt php-cli php-gd php-curl php-mysql php-ldap php-zip php-fileinfo
+zip unzip php-bcmath<span class="o">(</span>laravel5.7↑<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="ubuntu">Ubuntu</h3>
+<p>Ubuntu 18.04 預設安裝 php7.2，若想安裝最新版本，需新增 PPA</p>
+<p>Ubuntu之前有安裝php，但因更新Ubuntu版本後，PPA需再新增一次</p>
+<ol>
+<li>Add PPA</li>
+</ol>
+<p>We’ll add ppa:ondrej/php PPA repository which has the latest build packages of PHP.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span> add-apt-repository ppa:ondrej/
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><a href="https://blog.gtwang.org/linux/ubuntu-linux-add-and-remove-ppa-command-tutorial/">Ubuntu-PPA</a></li>
+</ul>
+<ol start="2">
+<li>安裝 php 7.4和相關套件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span> apt install php7.4
+</code></pre></td></tr></table>
+</div>
+</div><p>確認安裝版本</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$php</span> -v
+
+PHP 7.4.6 <span class="o">(</span>cli<span class="o">)</span> <span class="o">(</span>built: May <span class="m">14</span> <span class="m">2020</span> 10:02:44<span class="o">)</span> <span class="o">(</span> NTS <span class="o">)</span>
+Copyright <span class="o">(</span>c<span class="o">)</span> The PHP Group
+Zend Engine v3.4.0, Copyright <span class="o">(</span>c<span class="o">)</span> Zend Technologies
+    with Zend OPcache v7.4.6, Copyright <span class="o">(</span>c<span class="o">)</span>, by Zend Technologies
+</code></pre></td></tr></table>
+</div>
+</div><p>相關套件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span> apt install php7.4-<span class="o">{</span>bcmath,bz2,intl,gd,mbstring,mysql,zip<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="伺服器apache">伺服器(Apache)</h2>
+<h3 id="centos-1">Centos</h3>
+<ol>
+<li>安裝</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span> yum install httpd
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>設定狀態</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span> systemctl start httpd <span class="o">(</span>啟動apache<span class="o">)</span>
+<span class="nv">$sudo</span> systemctl <span class="nb">enable</span> httpd <span class="o">(</span>開機時啟動<span class="o">)</span>
+<span class="nv">$sudo</span> systemctl status httpd<span class="o">(</span>查看狀態<span class="o">)</span>
+<span class="nv">$sudo</span> systemctl restart httpd<span class="o">(</span>重新啟動<span class="o">)</span>
+<span class="nv">$sudo</span> systemctl stop httpd<span class="o">(</span>停止apache<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="ubuntu-1">Ubuntu</h3>
+<ol>
+<li>安裝</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span> yum install apache2
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>設定狀態</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span> systemctl start apache2 <span class="o">(</span>啟動apache<span class="o">)</span>
+<span class="nv">$sudo</span> systemctl <span class="nb">enable</span> apache2 <span class="o">(</span>開機時啟動<span class="o">)</span>
+<span class="nv">$sudo</span> systemctl status apache2<span class="o">(</span>查看狀態<span class="o">)</span>
+<span class="nv">$sudo</span> systemctl restart apache2<span class="o">(</span>重新啟動<span class="o">)</span>
+<span class="nv">$sudo</span> systemctl stop apache2<span class="o">(</span>停止apache<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="伺服器nginx">伺服器(Nginx)</h2>
+<h3 id="centos-2">Centos</h3>
+<ol>
+<li>安裝</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span> yum install nginx
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>啟動</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span> systemctl start nginx <span class="o">(</span>啟動nginx<span class="o">)</span>
+<span class="nv">$sudo</span> systemctl <span class="nb">enable</span> nginx <span class="o">(</span>開機時啟動<span class="o">)</span>
+<span class="nv">$sudo</span> systemctl status nginx<span class="o">(</span>查看狀態<span class="o">)</span>
+<span class="nv">$sudo</span> systemctl restart nginx<span class="o">(</span>重新啟動<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>設定
+在設定檔中，新增設定</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span> vim /etc/nginx/nginx.conf
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">server</span> {<span class="err">
+</span><span class="err"></span>    .<span class="err">
+</span><span class="err"></span>    <span class="nx">index</span> <span class="nx">index</span>.<span class="nx">php</span> <span class="nx">index</span>.<span class="nx">html</span><span class="err">
+</span><span class="err"></span>    .<span class="err">
+</span><span class="err"></span>    <span class="err">
+</span><span class="err"></span>    <span class="nx">location</span> <span class="p">~</span> \.<span class="nx">php</span>$ {<span class="err">
+</span><span class="err"></span>            <span class="nx">root</span>           <span class="sr">/usr/</span><span class="nx">share</span><span class="sr">/nginx/</span><span class="nx">html</span>;<span class="err">
+</span><span class="err"></span>            <span class="nx">fastcgi_pass</span>   <span class="nx">unix</span>:<span class="sr">/var/</span><span class="nx">run</span>/<span class="nx">php</span><span class="p">-</span><span class="nx">fpm</span>.<span class="nx">sock</span>;<span class="err">
+</span><span class="err"></span>            <span class="nx">fastcgi_index</span>  <span class="nx">index</span>.<span class="nx">php</span>;<span class="err">
+</span><span class="err"></span>            <span class="nx">fastcgi_param</span>  <span class="nx">SCRIPT_FILENAME</span> $<span class="nx">document_root</span>$<span class="nx">fastcgi_script_name</span>;<span class="err">
+</span><span class="err"></span>            <span class="nx">include</span>        <span class="nx">fastcgi_params</span>;<span class="err">
+</span><span class="err"></span>    }<span class="err">
+</span><span class="err"></span>}<span class="err">
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>預設目錄
+:::info
+/usr/share/nginx/html/
+:::</li>
+</ol>
+<h3 id="ubuntu-2">Ubuntu</h3>
+<ol>
+<li>Install</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span> apt install nginx
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>Setting</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">$sudo</span> vim /etc/nginx/sites-available/default
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">server</span> {<span class="err">
+</span><span class="err"></span>	<span class="err">
+</span><span class="err"></span>	<span class="nx">index</span> <span class="nx">index</span>.<span class="nx">php</span> <span class="nx">index</span>.<span class="nx">html</span> <span class="nx">index</span>.<span class="nx">htm</span> <span class="nx">index</span>.<span class="nx">nginx</span><span class="p">-</span><span class="nx">debian</span>.<span class="nx">html</span>;<span class="err">
+</span><span class="err">
+</span><span class="err"></span>	<span class="nx">server_name</span> <span class="nx">_</span>;<span class="err">
+</span><span class="err">
+</span><span class="err"></span>	#<span class="nx">Add</span> <span class="nx">Down</span><span class="err">
+</span><span class="err"></span>    <span class="err">
+</span><span class="err"></span>	<span class="nx">location</span> <span class="p">~</span> \.<span class="nx">php</span>$ {<span class="err">
+</span><span class="err"></span>        	<span class="nx">include</span> <span class="nx">snippets</span>/<span class="nx">fastcgi</span><span class="p">-</span><span class="nx">php</span>.<span class="nx">conf</span>;<span class="err">
+</span><span class="err"></span>        	<span class="nx">fastcgi_pass</span> <span class="nx">unix</span>:<span class="sr">/run/</span><span class="nx">php</span>/<span class="nx">php7</span>.<span class="m">4</span><span class="p">-</span><span class="nx">fpm</span>.<span class="nx">sock</span>;<span class="err">
+</span><span class="err"></span>	}<span class="err">
+</span><span class="err"></span> <span class="err">
+</span><span class="err"></span>    <span class="nx">location</span> <span class="p">~</span> /\.<span class="nx">ht</span> {<span class="err">
+</span><span class="err"></span>            <span class="nx">deny</span> <span class="nx">all</span>;<span class="err">
+</span><span class="err"></span>    }<span class="err">
+</span><span class="err"></span>	<span class="err">
+</span><span class="err"></span>}<span class="err">
+</span><span class="err">
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="mysql">MySQL</h2>
+<h3 id="centos-3">Centos</h3>
+<h3 id="ubuntu-3">Ubuntu</h3>
+<h2 id="phpmyadmin">PhpMyAdmin</h2>
+<h3 id="centos-4">Centos</h3>
+<h3 id="ubuntu-4">Ubuntu</h3>
+<h2 id="防火牆firewall">防火牆(Firewall)</h2>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">作者</span>
+    <span class="item-content">amyhsieh16</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">
+        2020-06-12
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        
+        <a class="next" href="/post/welocme/">
+            <span class="next-text nav-default">Welocme</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="mailto:your@email.com" class="iconfont icon-email" title="email"></a>
+      <a href="http://localhost:1313" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="http://localhost:1313" class="iconfont icon-twitter" title="twitter"></a>
+      <a href="http://localhost:1313" class="iconfont icon-facebook" title="facebook"></a>
+      <a href="http://localhost:1313" class="iconfont icon-linkedin" title="linkedin"></a>
+      <a href="http://localhost:1313" class="iconfont icon-google" title="google"></a>
+      <a href="http://localhost:1313" class="iconfont icon-github" title="github"></a>
+      <a href="http://localhost:1313" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="http://localhost:1313" class="iconfont icon-zhihu" title="zhihu"></a>
+      <a href="http://localhost:1313" class="iconfont icon-douban" title="douban"></a>
+      <a href="http://localhost:1313" class="iconfont icon-pocket" title="pocket"></a>
+      <a href="http://localhost:1313" class="iconfont icon-tumblr" title="tumblr"></a>
+      <a href="http://localhost:1313" class="iconfont icon-instagram" title="instagram"></a>
+      <a href="http://localhost:1313" class="iconfont icon-gitlab" title="gitlab"></a>
+      <a href="http://localhost:1313" class="iconfont icon-bilibili" title="bilibili"></a>
+  <a href="http://localhost:1313/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 強力驅動
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主題 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2020
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">amyhsieh16</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.d7b7ada643c9c1a983026e177f141f7363b4640d619caf01d8831a6718cd44ea.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

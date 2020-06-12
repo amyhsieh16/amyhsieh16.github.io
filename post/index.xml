@@ -2,21 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Amy Blog</title>
-    <link>https://amyhsieh16.github.io/post/</link>
+    <link>http://localhost:1313/post/</link>
     <description>Recent content in Posts on Amy Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Mon, 08 Jun 2020 19:10:11 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 12 Jun 2020 18:31:11 +0800</lastBuildDate>
     
-	<atom:link href="https://amyhsieh16.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>在Linux(Centos/Ubuntu)上，安裝LAMP/LEMP(LNMP)</title>
+      <link>http://localhost:1313/post/set-php/</link>
+      <pubDate>Fri, 12 Jun 2020 18:31:11 +0800</pubDate>
+      
+      <guid>http://localhost:1313/post/set-php/</guid>
+      <description>PHP Centos 從官網取得 Remi和 EPEL rpm的連結 1 2 3 4 5 6 7 8 9 centos 7: $sudo rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-7.rpm; $sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm; centos 8: $sudo rpm -Uvh https://rpms.remirepo.net/enterprise/remi-release-8.rpm; $sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm; 安装 yum-utils工具，並設定 php套件</description>
+    </item>
+    
+    <item>
       <title>Welocme</title>
-      <link>https://amyhsieh16.github.io/post/welocme/</link>
+      <link>http://localhost:1313/post/welocme/</link>
       <pubDate>Mon, 08 Jun 2020 19:10:11 +0800</pubDate>
       
-      <guid>https://amyhsieh16.github.io/post/welocme/</guid>
+      <guid>http://localhost:1313/post/welocme/</guid>
       <description>Hello World!!</description>
     </item>
     
